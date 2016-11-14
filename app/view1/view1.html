@@ -1,5 +1,5 @@
 <section>
-  <h1 class="main-heading">Provider Directory <span class="main-version">v0.1</span></h1>
+  <h1 class="main-heading">Find My Provider <span class="main-version">v0.1</span></h1>
 
   <section>
     <div id="directory" class="row">
@@ -16,7 +16,8 @@
       </div>
       <div id="provider-list" class="columns small-12 medium-7 container">
         <h1>Provider list</h1>
-        <div class="row provider-row" ng-repeat="provider in providers">
+        <button type="button" class="alert button small" ng-if="showDelete" ng-click="deleteSelections()">Delete selections</button>
+        <div id="provider-{{$index}}" class="row provider-row" ng-repeat="provider in providers" ng-click="selectProvider($index)">
           <div class="columns small-12 medium-12">
             <div class="row">
               <h2 class="provider-info">{{provider.specialty}}</h2>

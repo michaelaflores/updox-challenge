@@ -13,6 +13,10 @@ body {
   font-weight: 300;
 }
 
+.provider-selected {
+  background-color: #25374e;
+  color: #fff;
+}
 .provider-row {
   border: 3px solid #25374e;
   margin-bottom: 0.3125rem;

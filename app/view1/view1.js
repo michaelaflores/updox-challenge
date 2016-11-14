@@ -7,20 +7,32 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', [ '$scope', '$http', function ($scope, $http) {
+.controller('View1Ctrl', ['$scope', '$http', function ($scope, $http) {
   // scoped vars and functions
   $scope.createProvider = createProvider;
-  $scope.provider = {};
+  $scope.deleteSelections = deleteSelections;
+  $scope.selectProvider = selectProvider;
+  $scope.selectedProviders = [];
+  $scope.showDelete = false;
   $http({ method: 'GET', url: '/data.json' }).success((data, status, headers, config) => {
     $scope.providers = data;
-    console.log($scope.providers);
   });
 
+  $scope.$watch('selectedProviders', function(newValue, oldValue) {
+    console.log($scope.selectedProviders.length);
+    if ($scope.selectedProviders.length > 0) {
+      $scope.showDelete = true;
+    } else {
+      $scope.showDelete = false;
+    }
+  }, true);
+
   // function declarations
+  // Add a provider to the providers model
   function createProvider(form) {
-    var blob = {};
+    const blob = {};
     // TODO if this were real: probably create a filter to achieve the reordering we want
-    var providersCopy = $scope.providers;
+    const providersCopy = $scope.providers;
     blob.last_name = form.lastname;
     blob.first_name = form.firstname;
     blob.email_address = form.emailaddress;
@@ -29,8 +41,36 @@ angular.module('myApp.view1', ['ngRoute'])
 
     // Reorder providers array
     $scope.providers = [blob];
-    console.log($scope.providers);
     $scope.providers = $scope.providers.concat(providersCopy);
-    console.log($scope.providers);
+  }
+
+  // Delete selected providers
+  function deleteSelections() {
+    let indexToRemove = -1;
+    angular.forEach($scope.selectedProviders, function(index, value) {
+      indexToRemove = $scope.selectedProviders.indexOf(index);
+      if (indexToRemove > -1) {
+        $scope.providers.splice(indexToRemove, 1);
+        $scope.selectedProviders.splice(indexToRemove, 1);
+      }
+    });
+  }
+
+  // Alter UI to indicate selected providers, update selectedProviders model
+  function selectProvider(index) {
+    const $el = angular.element(`#provider-${  index}`);
+    let indexToRemove = -1;
+    const wasSelected = angular.element(`#provider-${  index}`).hasClass('provider-selected');
+    if (!wasSelected) {
+      $el.addClass('provider-selected');
+      $scope.selectedProviders.push(index);
+    } else {
+      indexToRemove = $scope.selectedProviders.indexOf(index);
+      if (indexToRemove > -1) {
+        $scope.selectedProviders.splice(indexToRemove, 1);
+        console.log($scope.selectedProviders);
+      }
+      $el.removeClass('provider-selected');
+    }
   }
 }]);
