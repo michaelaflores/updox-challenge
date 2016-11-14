@@ -78,7 +78,6 @@ angular.module('myApp.view1', ['ngRoute'])
       indexToRemove = $scope.selectedProviders.indexOf(index);
       if (indexToRemove > -1) {
         $scope.selectedProviders.splice(indexToRemove, 1);
-        //console.log($scope.selectedProviders);
       }
       $el.removeClass('provider-selected');
     }
