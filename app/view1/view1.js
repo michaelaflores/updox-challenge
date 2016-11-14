@@ -7,16 +7,24 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', '$http', function ($scope, $http) {
-  // vars and functions assigned to scope
+.controller('View1Ctrl', ['$scope', '$http', '$filter', function ($scope, $http, $filter) {
+  // scope assignments
   $scope.createProvider = createProvider;
   $scope.deleteSelections = deleteSelections;
   $scope.selectProvider = selectProvider;
   $scope.selectedProviders = [];
   $scope.showDelete = false;
+  $scope.sortBy = sortBy;
+
+  // controller-scope vars
+  var lastSort;
+  var reverseSort = false;
+
   $http({ method: 'GET', url: '/data.json' }).success((data, status, headers, config) => {
     $scope.providers = data;
   });
+
+  new Foundation.DropdownMenu(angular.element('#sort-dropdown'));
 
   $scope.$watch('selectedProviders', function(newValue, oldValue) {
     if ($scope.selectedProviders.length > 0) {
@@ -74,5 +82,11 @@ angular.module('myApp.view1', ['ngRoute'])
       }
       $el.removeClass('provider-selected');
     }
+  }
+
+  function sortBy(field) {
+    reverseSort = lastSort === field ? !reverseSort : false;
+    $scope.providers = $filter('orderBy')($scope.providers, field, reverseSort);
+    lastSort = field;
   }
 }]);

@@ -9,6 +9,7 @@ body {
   overflow: scroll;
 }
 .container h1 {
+  display: inline-block;
   font-size: 1.25rem;
   font-weight: 300;
 }
@@ -21,6 +22,7 @@ body {
   border: 3px solid #25374e;
   margin-bottom: 0.3125rem;
   padding: 0.9375rem;
+  transition: all .1s;
 }
 
 h2.provider-info {
@@ -34,5 +36,3 @@ h1.main-heading, span.main-version {
 span.main-version {
   font-size: 0.85rem;
 }
-
-/* utilities */

@@ -15,14 +15,28 @@
         </form>
       </div>
       <div id="provider-list" class="columns small-12 medium-7 container">
-        <h1>Provider list</h1>
-        <button type="button" class="alert button small" ng-if="showDelete" ng-click="deleteSelections()">Delete selections</button>
-        <div id="provider-{{$index}}" class="row provider-row" ng-repeat="provider in providers" ng-click="selectProvider($index)">
-          <div class="columns small-12 medium-12">
-            <div class="row">
-              <h2 class="provider-info">{{provider.specialty}}</h2>
-              <p class="columns small-7">{{provider.first_name}} {{provider.last_name}} – {{provider.practice_name}}</p>
-              <p class="columns small-5">{{provider.email_address}}</p>
+        <h1>Provider list </h1>
+        <ul id="sort-dropdown" class="dropdown menu float-right" data-dropdown-menu>
+          <li>
+            <a href="#">Sort by...</a>
+            <ul class="menu">
+              <li><a href="" ng-click="sortBy('specialty')">Specialty</a></li>
+              <li><a href="" ng-click="sortBy('first_name')">First name</a></li>
+              <li><a href="" ng-click="sortBy('last_name')">Last name</a></li>
+              <li><a href="" ng-click="sortBy('email_address')">Email address</a></li>
+              <li><a href="" ng-click="sortBy('practice_name')">Practice name</a></li>
+            </ul>
+          </li>
+        </ul>
+        <button id="delete-button" type="button" class="alert button expanded" ng-if="showDelete" ng-click="deleteSelections()">Delete selections</button>
+        <div id="provider-rows">
+          <div id="provider-{{$index}}" class="row provider-row" ng-repeat="provider in providers" ng-click="selectProvider($index)">
+            <div class="columns small-12 medium-12">
+              <div class="row">
+                <h2 class="provider-info">{{provider.specialty}}</h2>
+                <p class="columns small-7">{{provider.first_name}} {{provider.last_name}} – {{provider.practice_name}}</p>
+                <p class="columns small-5">{{provider.email_address}}</p>
+              </div>
             </div>
           </div>
         </div>
