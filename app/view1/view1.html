@@ -6,9 +6,9 @@
       <div id="provider-create" class="columns small-12 medium-4 container">
         <h1>Create Provider</h1>
         <form id="create-provider" ng-submit="createProvider(provider)">
-          <input id="last-name" type="text" placeholder="Last name" ng-model="provider.lastname">
-          <input id="first-name" type="text" placeholder="First name" ng-model="provider.firstname">
-          <input id="email-address" type="text" placeholder="Email address" ng-model="provider.emailaddress">
+          <input id="last-name" type="text" placeholder="Last name" ng-model="provider.lastname" ng-required="true">
+          <input id="first-name" type="text" placeholder="First name" ng-model="provider.firstname" ng-required="true">
+          <input id="email-address" type="text" placeholder="Email address" ng-model="provider.emailaddress" ng-required="true">
           <input id="specialty-name" type="text" placeholder="Specialty" ng-model="provider.specialtyname">
           <input id="practice-name" type="text" placeholder="Practice name" ng-model="provider.practicename">
           <button id="submit" type="submit" class="success button">Create</button>

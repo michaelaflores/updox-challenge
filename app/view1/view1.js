@@ -8,7 +8,7 @@ angular.module('myApp.view1', ['ngRoute'])
 }])
 
 .controller('View1Ctrl', ['$scope', '$http', function ($scope, $http) {
-  // scoped vars and functions
+  // vars and functions assigned to scope
   $scope.createProvider = createProvider;
   $scope.deleteSelections = deleteSelections;
   $scope.selectProvider = selectProvider;
@@ -19,7 +19,6 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 
   $scope.$watch('selectedProviders', function(newValue, oldValue) {
-    console.log($scope.selectedProviders.length);
     if ($scope.selectedProviders.length > 0) {
       $scope.showDelete = true;
     } else {
@@ -30,6 +29,9 @@ angular.module('myApp.view1', ['ngRoute'])
   // function declarations
   // Add a provider to the providers model
   function createProvider(form) {
+    if (form === undefined) {
+      return;
+    }
     const blob = {};
     // TODO if this were real: probably create a filter to achieve the reordering we want
     const providersCopy = $scope.providers;
@@ -68,7 +70,7 @@ angular.module('myApp.view1', ['ngRoute'])
       indexToRemove = $scope.selectedProviders.indexOf(index);
       if (indexToRemove > -1) {
         $scope.selectedProviders.splice(indexToRemove, 1);
-        console.log($scope.selectedProviders);
+        //console.log($scope.selectedProviders);
       }
       $el.removeClass('provider-selected');
     }
