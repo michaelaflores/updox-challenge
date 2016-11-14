@@ -1,0 +1,32 @@
+<section>
+  <h1 class="main-heading">Provider Directory <span class="main-version">v0.1</span></h1>
+
+  <section>
+    <div id="directory" class="row">
+      <div id="provider-create" class="columns small-12 medium-4 container">
+        <h1>Create Provider</h1>
+        <form>
+          <input type="text" placeholder="Last name">
+          <input type="text" placeholder="First name">
+          <input type="text" placeholder="Email address">
+          <input type="text" placeholder="Specialty">
+          <input type="text" placeholder="Practice name">
+          <button id="submit" type="button" class="success button">Create</button>
+        </form>
+      </div>
+      <div id="provider-list" class="columns small-12 medium-7 container">
+        <h1>Provider list</h1>
+        <div class="row provider-row" ng-repeat="provider in providers">
+          <div class="columns small-12 medium-12">
+            <div class="row">
+              <h2 class="provider-info">{{provider.specialty}}</h2>
+              <p class="columns small-7">{{provider.first_name}} {{provider.last_name}} – {{provider.practice_name}}</p>
+              <p class="columns small-5">{{provider.email_address}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>
