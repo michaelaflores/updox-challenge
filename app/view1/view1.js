@@ -19,6 +19,7 @@ angular.module('myApp.view1', ['ngRoute'])
   // function declarations
   function createProvider(form) {
     var blob = {};
+    // TODO if this were real: probably create a filter to achieve the reordering we want
     var providersCopy = $scope.providers;
     blob.last_name = form.lastname;
     blob.first_name = form.firstname;
@@ -26,6 +27,7 @@ angular.module('myApp.view1', ['ngRoute'])
     blob.specialty = form.specialtyname;
     blob.practice_name = form.practicename;
 
+    // Reorder providers array
     $scope.providers = [blob];
     console.log($scope.providers);
     $scope.providers = $scope.providers.concat(providersCopy);
