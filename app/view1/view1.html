@@ -5,13 +5,13 @@
     <div id="directory" class="row">
       <div id="provider-create" class="columns small-12 medium-4 container">
         <h1>Create Provider</h1>
-        <form>
-          <input type="text" placeholder="Last name">
-          <input type="text" placeholder="First name">
-          <input type="text" placeholder="Email address">
-          <input type="text" placeholder="Specialty">
-          <input type="text" placeholder="Practice name">
-          <button id="submit" type="button" class="success button">Create</button>
+        <form id="create-provider" ng-submit="createProvider(provider)">
+          <input id="last-name" type="text" placeholder="Last name" ng-model="provider.lastname">
+          <input id="first-name" type="text" placeholder="First name" ng-model="provider.firstname">
+          <input id="email-address" type="text" placeholder="Email address" ng-model="provider.emailaddress">
+          <input id="specialty-name" type="text" placeholder="Specialty" ng-model="provider.specialtyname">
+          <input id="practice-name" type="text" placeholder="Practice name" ng-model="provider.practicename">
+          <button id="submit" type="submit" class="success button">Create</button>
         </form>
       </div>
       <div id="provider-list" class="columns small-12 medium-7 container">
